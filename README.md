@@ -8,7 +8,6 @@ A precision agriculture solution designed to monitor soil pH and moisture levels
 
 ## 📸 Dashboard Preview
 
-*(Upload screenshot web dashboard Anda ke folder assets, lalu ganti link ini nanti)*
 ![Dashboard Screenshot](assets/screenshot_web.png)
 
 ## ✨ Key Features
