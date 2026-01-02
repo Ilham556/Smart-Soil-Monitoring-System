@@ -6,7 +6,6 @@
     <title>Monitoring Tanah IoT - Professional Dashboard</title>
     <style>
         :root {
-            /* Color Palette - Framer Professional Dark Theme */
             --bg-body: #050505;
             --bg-card: #121212;
             --bg-card-hover: #1A1A1A;
@@ -15,7 +14,7 @@
             --text-primary: #FFFFFF;
             --text-secondary: #888888;
             
-            --accent-primary: #2ECC71; /* Emerald Green */
+            --accent-primary: #2ECC71; 
             --accent-glow: rgba(46, 204, 113, 0.2);
             --gradient-primary: linear-gradient(135deg, #2ECC71 0%, #26A65B 100%);
             
@@ -46,7 +45,6 @@
             margin: 0 auto;
         }
         
-        /* HEADER STYLE */
         header {
             text-align: left;
             margin-bottom: 40px;
@@ -72,7 +70,6 @@
             font-size: 0.9em;
         }
         
-        /* STATUS BAR */
         .status-bar {
             display: inline-flex;
             align-items: center;
@@ -94,7 +91,6 @@
         .status-online { background: var(--status-success); color: var(--status-success); }
         .status-offline { background: var(--status-danger); color: var(--status-danger); }
         
-        /* DASHBOARD GRID (BENTO BOX STYLE) */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -119,7 +115,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* GRID SPANS */
         .card-metric { grid-column: span 6; }
         .recommendation-card { grid-column: span 12; }
         
@@ -162,7 +157,6 @@
             letter-spacing: -0.03em;
         }
         
-        /* GAUGE MODERN */
         .gauge-container {
             background: rgba(255,255,255,0.05);
             height: 6px;
@@ -173,7 +167,6 @@
         }
         
         .gauge-bar {
-            /* Ini akan di-override inline style nanti, tapi base stylenya kosong */
             width: 100%;
             height: 100%;
         }
@@ -191,7 +184,6 @@
             z-index: 2;
         }
 
-        /* Filling bar effect */
         .gauge-fill {
             position: absolute;
             top: 0;
@@ -222,12 +214,10 @@
             margin-top: 5px;
         }
         
-        /* STATUS COLORS TEXT */
         .text-danger { color: var(--status-danger); }
         .text-warning { color: var(--status-warning); }
         .text-success { color: var(--status-success); }
         
-        /* STATS ROW */
         .stat-row {
             display: flex;
             gap: 15px;
@@ -252,7 +242,6 @@
             color: var(--text-primary);
         }
 
-        /* RECOMMENDATION SECTION */
         .recommendation-card {
             background: radial-gradient(circle at top right, rgba(46, 204, 113, 0.1), transparent 40%), var(--bg-card);
             border: 1px solid rgba(46, 204, 113, 0.3);
@@ -297,7 +286,6 @@
             color: var(--text-secondary);
         }
 
-        /* UTILS */
         .error {
             background: rgba(255, 71, 87, 0.1);
             color: var(--status-danger);
@@ -548,7 +536,6 @@
         }
 
         function updateDashboard(moisture, ph, timestamp) {
-            // Update Kelembapan
             document.getElementById('soilValue').textContent = moisture.toFixed(1) + '%';
             document.getElementById('soilGauge').style.left = `${moisture}%`;
             document.getElementById('soilFill').style.width = `${moisture}%`;
@@ -564,11 +551,9 @@
             soilEl.textContent = soilText;
             soilEl.style.color = soilColor;
             soilEl.style.border = `1px solid ${soilColor}`;
-            
-            // Update pH
+
             document.getElementById('phValue').textContent = ph.toFixed(1);
             
-            // Mapping pH (3.5 - 9.5) to percent (0 - 100) for gauge
             let phPercent = ((ph - 3.5) / (9.5 - 3.5)) * 100;
             phPercent = Math.max(0, Math.min(100, phPercent)); // Clamp
             document.getElementById('phGauge').style.left = `${phPercent}%`;
@@ -585,7 +570,6 @@
             phEl.style.color = phColor;
             phEl.style.border = `1px solid ${phColor}`;
             
-            // Update Recommendations
             const recommendations = getPlantRecommendations(ph, moisture);
             const recDiv = document.getElementById('recommendations');
             recDiv.innerHTML = '';
@@ -596,7 +580,6 @@
                 recDiv.appendChild(div);
             });
             
-            // Time
             const date = new Date(timestamp);
             document.getElementById('lastUpdate').textContent = `Last Sync: ${date.toLocaleTimeString()}`;
         }
@@ -605,4 +588,5 @@
         updateInterval = setInterval(fetchData, UPDATE_INTERVAL);
     </script>
 </body>
+
 </html>
